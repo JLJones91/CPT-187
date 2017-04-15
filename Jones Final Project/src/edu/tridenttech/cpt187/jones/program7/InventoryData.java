@@ -1,0 +1,112 @@
+//File: InventoryData.java
+//Programmer: Jamie Jones
+//Purpose: Loads, Sorts, and Searches arrays for partNum, returns price
+
+package edu.tridenttech.cpt187.jones.program7;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Scanner;
+
+public class InventoryData {
+	private int[] partNum = new int[600];
+	private double[] price = new double[600];
+	private int partCount = 0;
+
+	public void loadArrays (String fileName)
+	{
+		try
+		{
+			Scanner infile = new Scanner (new FileInputStream(fileName));
+			
+			while (infile.hasNext())
+			{
+				partNum[partCount] = infile.nextInt();
+				price[partCount] = infile.nextDouble();
+				++partCount;
+			}
+			infile.close();
+		} //End Try
+		
+		catch (IOException ex)
+		{
+			partCount = -1;
+			ex.printStackTrace();
+		} //End Catch
+	} //END loadArray
+	
+	public void bubbleSort()
+	{
+		int last = partCount - 1;
+		while(last > 0)
+		{
+			int ind = 0; 
+			int swap = -1;
+			while (ind < last)
+			{
+				if(partNum[ind] > partNum[ind +1])
+				{
+					int numTemp = partNum[ind];
+					double priceTemp = price[ind];
+					partNum[ind] = partNum[ind + 1];
+					partNum[ind + 1] = numTemp;
+					price[ind] = price[ind + 1];
+					price[ind + 1] = priceTemp;
+					swap = 1;
+				}
+				else
+				{
+					++ind;
+				}
+			}//END while loop
+			if (swap == 0)
+				{
+					last = 0;
+				}
+				else
+				{
+					last = last -1;
+				}
+			
+		}//END while loop
+	}//END bubbleSort
+	
+	public int binSearch(int target)
+	{
+		int first = 0;
+		int last = partCount - 1;
+		boolean found = false;
+		
+		while (first <= last && !found)
+		{
+			
+			int mid = (first + last)/2;
+			if(partNum[mid] == target)
+			{
+				found = true;
+				return mid;
+			}
+			else if (partNum[mid] < target)
+			{
+				first = mid + 1;
+			}
+			else
+				last = mid  - 1;
+			if(!found)
+			{
+				mid = -1;
+			}
+		}//END while
+		return -1;
+	}//END binSearch
+	
+	public double getPrice(int index)
+	{
+		if (index >=0)
+		{
+		return price[index];
+		}
+	else
+		return -1;
+	}//END getPrice
+}//END Class

@@ -1,0 +1,70 @@
+//FILE: MainClass.java
+//PROG: Jamie Jones
+//PURP: Simualte an elevator moving up and down, 
+		//load and unload passengers
+
+package edu.tridenttech.cpt187.jones.program3;
+
+import java.util.Scanner;
+
+public class MainClass 
+{
+
+	public static void main(String[] args) 
+	{
+		Scanner input = new Scanner(System.in);
+		
+		Elevator myAccount = new Elevator(18, 1, 1, 99, 0);
+		int	maxRiders;	//Max Riders of Elevator
+		int curntFloor;	//Current Floor Elevator is on
+		int	highestFloor; //Highest Floor Elevator can go
+		int lowestFloor;	//Lowest Floor Elevator can go
+		int numbOn;		//Number of people getting on
+		int numbOff;		//Number of people getting off
+		int	curntPass = 5; //Number of passengers on elevator
+		
+		curntFloor = myAccount.getCurrentFloor();
+		maxRiders = myAccount.getMaxCapacity();
+		highestFloor = myAccount.getMaxFloor();
+		lowestFloor = myAccount.getMinFloor();
+		
+		
+		System.out.println("You are on floor #" + curntFloor +".");
+		System.out.println("Passengers on Board: " + curntPass + ".");
+		numbOn = 10;
+			
+		if (numbOn > maxRiders - curntPass)
+			{
+			System.out.println("I'm sorry. " + numbOn + " is above the maximum number of passengers for safe travel!");
+			numbOn = maxRiders-curntPass;
+			System.out.println(numbOn + " will be allowed to ride.");
+			}
+		
+		else
+			{
+			
+			System.out.println("Passengers on Board: " + myAccount.getNumOnBoard() + ".");
+			}	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		input.close();
+	}
+
+}// End MainClass

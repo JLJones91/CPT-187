@@ -1,0 +1,74 @@
+//FILE: Elevator.java
+//PROG: Jamie Jones
+//Purp: Simulate an elevator moving up and down, 
+		//and loading and unloading passengers
+
+package edu.tridenttech.cpt187.jones.program3;
+
+public class Elevator 
+{
+	//The Class's instance Variables
+	private int	numOnBoard;
+	private	int	maxCapacity;
+	private int	currentFloor;
+	private	int	destFloor;
+	private	int	maxFloor;
+	private	int	minFloor;
+	
+	public Elevator (int maxRiders, int curntFloor, int highestFloor, int lowestFloor, int curntPass)
+	{
+		maxCapacity = maxRiders;
+		currentFloor = curntFloor;
+		maxFloor = highestFloor;
+		minFloor = lowestFloor;
+		numOnBoard = curntPass;
+	}
+
+	public int getNumOnBoard()
+	{
+		return numOnBoard;
+	}
+
+	public int getMaxCapacity()
+	{
+		return maxCapacity;
+	}
+
+	public int	getCurrentFloor()
+	{
+		return currentFloor;
+	}
+
+	public int getDestFloor()
+	{
+		return destFloor;
+	}
+
+	public int getMaxFloor() 
+	{
+		return maxFloor;
+	}
+
+	public int getMinFloor()
+	{
+		return minFloor;
+	}
+
+	public void loadElevator(int numbOn)
+	{
+		numOnBoard += numbOn;
+	}
+
+	public void unloadElevator (int numbOff)
+	{
+		numOnBoard -= numbOff;
+	}
+
+	public void moveElevator (int floor)
+	{
+		destFloor = floor;
+		currentFloor ++;
+	}
+	
+	
+}// End class Elevator

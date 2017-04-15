@@ -1,0 +1,10 @@
+package edu.tridenttech.cpt187.jones.program3;
+
+public class Elevator {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

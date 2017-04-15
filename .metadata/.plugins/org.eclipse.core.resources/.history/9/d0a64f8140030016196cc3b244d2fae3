@@ -1,0 +1,10 @@
+package edu.tridenttech.cpt186.jones.progam6;
+
+public class InventoryData {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

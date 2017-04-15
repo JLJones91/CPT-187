@@ -1,0 +1,134 @@
+//FILE: MainClass.java
+//PROG: Jamie Jones
+//PURP: Simualte an elevator moving up and down, 
+		//load and unload passengers
+
+package edu.tridenttech.cpt187.jones.program3;
+
+import java.util.Scanner;
+
+public class MainClass 
+{
+
+	public static void main(String[] args) 
+	{
+		Scanner input = new Scanner(System.in);
+		
+		Elevator myRide = new Elevator(18, 1, 99, 1, 0);
+		int	maxRiders;	//Max Riders of Elevator
+		int curntFloor;	//Current Floor Elevator is on
+		int	highestFloor; //Highest Floor Elevator can go
+		int lowestFloor;	//Lowest Floor Elevator can go
+		int numbOn;		//Number of people getting on
+		int numbOff;		//Number of people getting off
+		int	curntPass; //Number of passengers on elevator
+		int	destFloor;	//Destination floor
+		
+		curntFloor = myRide.getCurrentFloor();
+		maxRiders = myRide.getMaxCapacity();
+		curntPass = myRide.getNumOnBoard();
+		
+		System.out.println("You are on floor #" + curntFloor +".");
+		
+		numbOn = 20; //Set # of Passengers
+		getPassOn (numbOn, maxRiders, curntPass);	
+		
+		//Move Elevator
+		destFloor = 50; //Set destination Floor
+		highestFloor = myRide.getMaxFloor();
+		lowestFloor = myRide.getMinFloor();
+		curntFloor = myRide.getCurrentFloor();
+		
+		moveElevator (highestFloor, lowestFloor, destFloor, curntFloor);
+		System.out.println(curntPass);
+		
+		numbOff = 17; //Number of passengers getting off Elevator
+		letPassOff(numbOff, curntPass);
+		
+			
+		input.close();
+		
+	}//End class
+	
+	//Begin moveElevator
+	static void moveElevator (int highestFloor, int lowestFloor, int destFloor, int curntFloor)
+		{
+		if (highestFloor < destFloor)
+		{
+			System.out.println("I'm sorry you cannot go there!");
+			System.out.println("The highest floor in this building is " + highestFloor + ".");
+		}
+	
+		else if(lowestFloor > destFloor)		
+		{
+			System.out.println("I'm sorry you cannot go there.");
+			System.out.println("The lowest floor in this building is " + lowestFloor + ".");
+		}
+	
+		else if (curntFloor == destFloor)
+		{
+			System.out.println("You are already on that floor");
+		}
+	
+		else if (destFloor > curntFloor)
+		{
+			System.out.println("Going up from floor " + curntFloor);
+			while (curntFloor <(destFloor-1))
+			{
+				curntFloor ++;
+				System.out.println("Passing Floor " + curntFloor);
+			}
+			curntFloor ++;
+			System.out.println("You have arrived at floor " + curntFloor);
+		}
+		else if (destFloor < curntFloor)
+		{
+			System.out.println("Going Down from floor " + curntFloor);
+			while (curntFloor >(destFloor+1))
+			{
+				curntFloor --;
+				System.out.println("Passing Floor " + curntFloor);
+			}
+			curntFloor --;
+			System.out.println("You have arrived at floor " + curntFloor);
+			curntFloor = destFloor;
+		}
+	}//End moveElevator
+	
+	//Begin getPassOn
+	static void getPassOn(int numbOn, int maxRiders, int curntPass)
+		{
+			if (numbOn > maxRiders - curntPass)
+			{
+				System.out.println("I'm sorry. " + numbOn + " is above the maximum number of passengers for safe travel!");
+				numbOn = maxRiders - curntPass;
+				System.out.println(numbOn + " will be allowed to ride.");
+				curntPass += numbOn;
+			}
+			else
+			{
+				curntPass += numbOn;
+				System.out.println("Passengers on Board: " + curntPass + ".");
+			}
+		}//End getPassOn
+	
+	//Begin letPassOff
+	static void letPassOff(int numbOff, int curntPass)
+		{
+			if (numbOff > curntPass)
+			{	
+				System.out.println("All passengers exiting elevator");
+				curntPass = 0;
+			}
+			else 
+			{
+				System.out.println(numbOff + " passenger(s) are leaving the elevator");
+				curntPass -= numbOff;	
+			}		
+		}//End letPassOff
+			
+			
+			
+			
+			
+}// End MainClass
